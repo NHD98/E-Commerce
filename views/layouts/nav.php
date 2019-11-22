@@ -13,12 +13,8 @@ if (isset($_SESSION['cart'])) {
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item active">
           <a id="cartCount" class="nav-link" href="cart.php">Cart (<?php echo $len ?>) </a> </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Log in
-          </a>
-        </li>
       </ul>
     </div>
   </div>

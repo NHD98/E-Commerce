@@ -7,13 +7,15 @@ include_once('./layouts/header.php');
     var xhr = new XMLHttpRequest;
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(this.responseText);
         var result = JSON.parse(this.responseText);
+        console.log(result);
+        var len = result.length;
+        alert("Thêm thành công");
+        document.getElementById('cartCount').innerHTML = `Cart (${len})`;
       }
     }
-    var count = document.getElementById('qty').value;
-    console.log(count);
-
-    xhr.open("GET", `../controller/addToCart.php?id=${id}&count=${count}`);
+    xhr.open("GET", `../controller/Cart.php?id=${id}&op=1`);
     xhr.send();
   }
 
@@ -26,7 +28,7 @@ include_once('./layouts/header.php');
       if (xhr.readyState == 4 && xhr.status == 200) {
         var item = JSON.parse(this.responseText);
         if (item != null) {
-          document.getElementById('imageArea').innerHTML = `<img width='100%' src='../${item['image']}' alt='${item['name']}'>`;
+          document.getElementById('imageArea').innerHTML = `<img height='350px' width='100%' src='../${item['image']}' alt='${item['name']}'>`;
           document.getElementById('nameArea').innerHTML = `<h2 class='mt-5'>${item['name']}</h2>`;
           document.getElementById('priceArea').innerHTML = `<span style='color:red; font-size: 30px;' class='mt-4'>${item['price']} ₫</span>`;
           document.getElementById('detailArea').innerHTML = `<p class='mt-4'>${item['detail']}</p>`;
@@ -45,28 +47,13 @@ include_once('./layouts/header.php');
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-5" id="imageArea">
+      <div class="col-lg-4" id="imageArea">
       </div>
-      <div class="col-lg-7">
+      <div class="col-lg-8">
         <div id="nameArea"></div>
         <div id="priceArea"></div>
         <div id="detailArea"></div>
-        <div class="d-flex mt-5">
-          <div style="width: 105px;">
-            <div class="input-group bootstrap-touchspin">
-              <span class="input-group-btn">
-                <button class="btn btn-default bootstrap-touchspin-down" type="button">-</button>
-              </span>
-              <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
-              <input id="qty" type="tel" name="qty" value="1" min="1" max="100" class="form-control" style="display: block;">
-              <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
-              <span class="input-group-btn">
-                <button class="btn btn-default bootstrap-touchspin-up" type="button">+</button>
-              </span>
-            </div>
-          </div>
-          <div class="ml-5"><button id="btnOrder" class="btn btn-info">Đặt mua</button></div>
-        </div>
+        <div class="mt-4"><button id="btnOrder" class="btn btn-info">Đặt mua</button></div>
       </div>
 
     </div>

@@ -12,13 +12,13 @@ session_start();
       if (xhr.readyState == 4 && xhr.status == 200) {
         console.log(this.responseText);
         var result = JSON.parse(this.responseText);
-        // console.log(result);
+        console.log(result);
         var len = result.length;
         alert("Thêm thành công");
         document.getElementById('cartCount').innerHTML = `Cart (${len})`;
       }
     }
-    xhr.open("GET", `../controller/Cart.php?id=${id}`);
+    xhr.open("GET", `../controller/Cart.php?id=${id}&op=1`);
     xhr.send();
   }
 
@@ -35,7 +35,7 @@ session_start();
             content += "<div class='col-md-4 product-men mb-5 productItem'>";
             content += "<div class='men-pro-item simpleCart_shelfItem'>";
             content += "<div class='men-thumb-item text-center'>";
-            content += "<img width='200' src='../" + list[i]['image'] + "' alt=''>";
+            content += "<img height='200' width='200' src='../" + list[i]['image'] + "' alt=''>";
             content += "<div class='men-cart-pro'>";
             content += "<div class='inner-men-cart-pro'>";
             content += "<a href='itemDetail.php?name=" + list[i]['name'] + "&id=" + list[i]['id'] + "' class='link-product-add-cart'>Quick View</a>";
@@ -113,4 +113,3 @@ session_start();
 
   </div>
   <!-- /.container -->
-  <?php include_once('layouts/footer.php') ?>
