@@ -26,11 +26,11 @@ include_once('./layouts/header.php');
       if (xhr.readyState == 4 && xhr.status == 200) {
         var item = JSON.parse(this.responseText);
         if (item != null) {
-          document.getElementById('imageArea').innerHTML = `<img width='100%' src='../${item[0]['image']}' alt='${item[0]['name']}'>`;
-          document.getElementById('nameArea').innerHTML = `<h2 class='mt-5'>${item[0]['name']}</h2>`;
-          document.getElementById('priceArea').innerHTML = `<span style='color:red; font-size: 30px;' class='mt-4'>${item[0]['price']} ₫</span>`;
-          document.getElementById('detailArea').innerHTML = `<p class='mt-4'>${item[0]['detail']}</p>`;
-          document.getElementById('btnOrder').setAttribute("onclick", `addToCart(${item[0]['id']})`);
+          document.getElementById('imageArea').innerHTML = `<img width='100%' src='../${item['image']}' alt='${item['name']}'>`;
+          document.getElementById('nameArea').innerHTML = `<h2 class='mt-5'>${item['name']}</h2>`;
+          document.getElementById('priceArea').innerHTML = `<span style='color:red; font-size: 30px;' class='mt-4'>${item['price']} ₫</span>`;
+          document.getElementById('detailArea').innerHTML = `<p class='mt-4'>${item['detail']}</p>`;
+          document.getElementById('btnOrder').setAttribute("onclick", `addToCart(${item['id']})`);
         }
       }
     }

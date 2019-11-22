@@ -3,21 +3,22 @@ include_once('layouts/header.php');
 include_once('../models/product.php');
 session_start();
 // session_destroy();
-var_dump($_SESSION);
+// var_dump($_SESSION);
 ?>
 <script>
   function addToCart(id) {
     var xhr = new XMLHttpRequest;
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(this.responseText);
         var result = JSON.parse(this.responseText);
+        // console.log(result);
         var len = result.length;
         alert("Thêm thành công");
         document.getElementById('cartCount').innerHTML = `Cart (${len})`;
       }
     }
-    var count = 1;
-    xhr.open("GET", `../controller/addToCart.php?id=${id}&count=${count}`);
+    xhr.open("GET", `../controller/Cart.php?id=${id}`);
     xhr.send();
   }
 
